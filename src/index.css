@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #023047;
+  --color-teal: #028090;
+  --color-seafoam: #00A896;
+  --color-mint: #02C39A;
+  --color-amber: #E07A1F;
+
+  --font-heading: Cambria, Georgia, serif;
+  --font-body: Calibri, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-body, Calibri, system-ui, sans-serif);
+  color: #023047;
+  background-color: #f8fafc;
+  margin: 0;
+  padding: 0;
+}
+
