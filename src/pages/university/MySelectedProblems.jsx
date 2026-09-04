@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
 import StatusPill from '../../components/ui/StatusPill.jsx';
 import DomainTag from '../../components/ui/DomainTag.jsx';
+import DifficultyBadge from '../../components/ui/DifficultyBadge.jsx';
 import {
   FolderKanban, MapPin, Calendar, Users, ArrowRight, CheckCircle2, AlertCircle, PlusCircle, Handshake, Rocket
 } from 'lucide-react';
@@ -55,6 +56,7 @@ export default function MySelectedProblems() {
                   <div className="flex items-center gap-1.5 flex-wrap">
                     <DomainTag domain={project.domain} />
                     <StatusPill status={project.status} />
+                    <DifficultyBadge seed={project.id} />
                   </div>
                   <span className="text-[11px] font-mono text-slate-400">{project.id}</span>
                 </div>

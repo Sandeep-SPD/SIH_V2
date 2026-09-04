@@ -1,8 +1,38 @@
 import React from 'react';
-import { MapPin, Calendar, Building2, Users, Flame, Award, DollarSign } from 'lucide-react';
+import { MapPin, Calendar, Building2, Users, Flame, Award, DollarSign, Gauge } from 'lucide-react';
 import StatusPill from './StatusPill.jsx';
 import DomainTag from './DomainTag.jsx';
 import VoteButtons from './VoteButtons.jsx';
+
+// --- Difficulty helper (prototype only: deterministic pseudo-random from complaint id) ---
+const DIFFICULTY_LEVELS = [
+  { label: 'Easy', bg: 'bg-emerald-50', text: 'text-emerald-800', border: 'border-emerald-200', dot: 'bg-emerald-500' },
+  { label: 'Medium', bg: 'bg-yellow-50', text: 'text-yellow-800', border: 'border-yellow-200', dot: 'bg-yellow-500' },
+  { label: 'Hard', bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200', dot: 'bg-red-500' },
+];
+
+function getDifficulty(seed) {
+  // simple string hash so the same complaint id always gets the same difficulty
+  const str = String(seed ?? Math.random());
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+  }
+  return DIFFICULTY_LEVELS[hash % DIFFICULTY_LEVELS.length];
+}
+
+function DifficultyBadge({ seed }) {
+  const level = getDifficulty(seed);
+  return (
+    <span
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold ${level.bg} ${level.text} border ${level.border}`}
+    >
+      <span className={`w-1.5 h-1.5 rounded-full ${level.dot}`} />
+      {level.label}
+    </span>
+  );
+}
+// --- end difficulty helper ---
 
 export default function ComplaintCard({ complaint, onClick, showActions = false, onAccept, onDecline }) {
   const {
@@ -33,9 +63,10 @@ export default function ComplaintCard({ complaint, onClick, showActions = false,
       <div className="p-4 sm:p-5">
         {/* Top Badges */}
         <div className="flex items-center justify-between gap-2 mb-3">
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap overflow-clip">
             <DomainTag domain={domain} />
             <StatusPill status={status} />
+            <DifficultyBadge seed={id} />
             {outcomeTag && (
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
                 <Award className="w-3 h-3 text-amber" />

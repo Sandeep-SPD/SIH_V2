@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
 import Modal from '../../components/ui/Modal.jsx';
+import DifficultyBadge from '../../components/ui/DifficultyBadge.jsx';
 import StatusPill from '../../components/ui/StatusPill.jsx';
 import DomainTag from '../../components/ui/DomainTag.jsx';
 import {
@@ -129,6 +130,7 @@ export default function BrowseProblems() {
                 <div className="flex items-center gap-1.5 flex-wrap">
                   <DomainTag domain={project.domain} />
                   <StatusPill status={project.status} />
+                  <DifficultyBadge seed={project.id} />
                 </div>
                 <span className="text-xs font-mono text-slate-400">{project.id}</span>
               </div>

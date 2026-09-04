@@ -9,6 +9,37 @@ import {
   ChevronDown, ChevronRight, Check, X, Users, Flame, MapPin, Building2, Calendar, Sparkles, CheckCircle2
 } from 'lucide-react';
 
+// --- Difficulty helper (prototype only: deterministic pseudo-random from complaint id) ---
+// NOTE: keep this identical to the version in ComplaintCard.jsx so the same
+// problem id always shows the same difficulty everywhere in the app.
+const DIFFICULTY_LEVELS = [
+  { label: 'Easy', bg: 'bg-emerald-50', text: 'text-emerald-800', border: 'border-emerald-200', dot: 'bg-emerald-500' },
+  { label: 'Medium', bg: 'bg-yellow-50', text: 'text-yellow-800', border: 'border-yellow-200', dot: 'bg-yellow-500' },
+  { label: 'Hard', bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200', dot: 'bg-red-500' },
+];
+
+function getDifficulty(seed) {
+  const str = String(seed ?? Math.random());
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+  }
+  return DIFFICULTY_LEVELS[hash % DIFFICULTY_LEVELS.length];
+}
+
+function DifficultyBadge({ seed }) {
+  const level = getDifficulty(seed);
+  return (
+    <span
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold border ${level.bg} ${level.text} ${level.border}`}
+    >
+      <span className={`w-1.5 h-1.5 rounded-full ${level.dot}`} />
+      {level.label}
+    </span>
+  );
+}
+// --- end difficulty helper ---
+
 export default function AllProblems() {
   const { complaints, acceptProblem, currentUser } = useAuth();
   const navigate = useNavigate();
@@ -136,6 +167,7 @@ export default function AllProblems() {
                               <Flame className="w-3 h-3 text-rose-500" />
                               Priority {problem.priorityScore}/100
                             </span>
+                            <DifficultyBadge seed={problem.id} />
                           </div>
 
                           <h3
