@@ -103,7 +103,7 @@ export default function SystemicAlerts() {
                     <MapPin className="w-3.5 h-3.5 text-teal shrink-0" />
                     <span>Districts: </span>
                     <span className="font-semibold text-navy">
-                      {issue.affectedDistricts.join(', ')}
+                      {issue.affectedDistricts?.join(', ')|| "No districts"}
                     </span>
                   </div>
 
