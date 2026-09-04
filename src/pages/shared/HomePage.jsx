@@ -42,7 +42,7 @@ export default function HomePage() {
         <div className="max-w-3xl space-y-4 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal/10 text-teal text-xs font-semibold border border-teal/20">
             <Sparkles className="w-3.5 h-3.5" />
-            Smart India Hackathon 2024–25 | Problem Statement 26043
+            Smart India Hackathon 2026–27 | Problem Statement 26043
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-navy tracking-tight leading-tight">

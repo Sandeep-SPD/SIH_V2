@@ -52,7 +52,7 @@ export const INITIAL_VERIFICATION_QUEUE = [
     applicantEmail: 'registrar@umu.ac.in',
     departments: ['Mining Engg', 'Applied Sciences', 'Computer Science'],
     documents: 'UGC Approval Letter & AISHE Code #C-45210',
-    submissionDate: '2025-02-27',
+    submissionDate: '2026-02-27',
     status: 'Pending'
   },
   {
@@ -63,7 +63,7 @@ export const INITIAL_VERIFICATION_QUEUE = [
     applicantEmail: 'csr.projects@esl.in',
     departments: ['Water Infrastructure', 'Metallurgy', 'Renewable Energy'],
     documents: 'Corporate Affairs Certificate & CSR Registration Form CSR-1',
-    submissionDate: '2025-02-28',
+    submissionDate: '2026-02-28',
     status: 'Pending'
   },
   {
@@ -74,7 +74,7 @@ export const INITIAL_VERIFICATION_QUEUE = [
     applicantEmail: 'research@arkajainuniversity.ac.in',
     departments: ['Health Sciences', 'Information Technology', 'Bio-Tech'],
     documents: 'State Private University Gazette Notification & AICTE Recognition',
-    submissionDate: '2025-03-01',
+    submissionDate: '2026-03-01',
     status: 'Pending'
   }
 ];

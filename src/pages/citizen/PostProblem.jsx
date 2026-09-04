@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext.jsx';
 import FileUploadInput from '../../components/forms/FileUploadInput.jsx';
 import ComplaintCard from '../../components/ui/ComplaintCard.jsx';
 import { DOMAIN_CATEGORIES } from '../../data/jharkhandDistrics.js';
-import { PlusCircle, ListFilter, Sparkles, MapPin, CheckCircle2, AlertCircle, Phone, User } from 'lucide-react';
+import { PlusCircle, ListFilter, Sparkles, MapPin, CheckCircle2, AlertCircle, Phone, User,Mic } from 'lucide-react';
 
 export default function PostProblem() {
   const { currentUser, addComplaint, complaints, districts } = useAuth();
@@ -176,18 +176,32 @@ export default function PostProblem() {
 
             {/* Problem Title */}
             <div className="space-y-1.5">
-              <label className="block text-xs font-semibold text-slate-700">
-                Problem Title (Short & Descriptive)
-              </label>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g. Extreme Arsenic Contamination in Dahigora Primary School Borewell"
-                className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:ring-1 focus:ring-teal"
-                required
-              />
-            </div>
+  <label className="block text-xs font-semibold text-slate-700">
+    Problem Title (Short & Descriptive)
+  </label>
+
+  <div className="relative">
+    <input
+      type="text"
+      value={title}
+      onChange={(e) => setTitle(e.target.value)}
+      placeholder="e.g. Extreme Arsenic Contamination in Dahigora Primary School Borewell"
+      className="w-full px-3 py-2 pr-12 text-sm bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:ring-1 focus:ring-teal"
+      required
+    />
+
+    <button
+      type="button"
+      onClick={() => {
+        console.log("Mic clicked");
+      }}
+      className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-slate-500 hover:text-teal hover:bg-teal-50 transition"
+      title="Voice input"
+    >
+      <Mic size={18} />
+    </button>
+  </div>
+</div>
 
             {/* Domain Category with AI Hint */}
             <div className="space-y-1.5">
@@ -219,18 +233,33 @@ export default function PostProblem() {
 
             {/* Problem Description */}
             <div className="space-y-1.5">
-              <label className="block text-xs font-semibold text-slate-700">
-                Detailed Problem Statement & Impact
-              </label>
-              <textarea
-                rows={4}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Explain the root issue, how long it has persisted, who is affected (number of households, schools, farms), and what failed in previous standard remedies."
-                className="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:ring-1 focus:ring-teal leading-relaxed"
-                required
-              />
-            </div>
+  <label className="block text-xs font-semibold text-slate-700">
+    Detailed Problem Statement & Impact
+  </label>
+
+  <div className="relative">
+    <textarea
+      rows={4}
+      value={description}
+      onChange={(e) => setDescription(e.target.value)}
+      placeholder="Explain the root issue, how long it has persisted, who is affected (number of households, schools, farms), and what failed in previous standard remedies."
+      className="w-full px-3 py-2 pr-12 text-xs sm:text-sm bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:ring-1 focus:ring-teal leading-relaxed resize-none"
+      required
+    />
+
+    <button
+      type="button"
+      onClick={() => {
+        // Add speech recognition logic here
+        console.log("Mic clicked");
+      }}
+      className="absolute right-2 bottom-2 p-2 rounded-full text-slate-500 hover:text-teal hover:bg-teal-50 transition"
+      title="Voice input"
+    >
+      <Mic/>
+    </button>
+  </div>
+</div>
 
             {/* Geotag & Location Inputs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

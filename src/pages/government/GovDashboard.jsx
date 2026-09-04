@@ -156,8 +156,8 @@ export default function GovDashboard() {
             <div key={issue.id} className="bg-white p-4 rounded-xl border border-amber-200 shadow-2xs space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-bold text-amber-900 bg-amber-100/70 px-2 py-0.5 rounded">
-                  {issue.reportsCount} Reports Across {issue.affectedDistricts?.length || 0} Districts
-                </span>
+  {issue.reportsCount} Reports Across {issue.affectedDistricts?.length || 0} Districts
+</span>
                 <span className="text-xs font-mono font-bold text-teal">{issue.recommendedTenderBudget}</span>
               </div>
               <h4 className="font-bold text-navy text-xs sm:text-sm">{issue.title}</h4>
